@@ -9,7 +9,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "top.stores.intagramcloneapp"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -41,5 +41,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'com.google.firebase:firebase-core:17.2.2'
+   // implementation 'com.google.firebase:firebase-auth:17.2.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
+    //implementation 'com.google.firebase:firebase-database:17.2.2'
+    implementation 'com.google.firebase:firebase-database-ktx:19.3.1'
+    //implementation 'com.google.firebase:firebase-storage:17.2.2'
+    implementation 'com.google.firebase:firebase-storage-ktx:19.1.1'
+
+
 
 }
