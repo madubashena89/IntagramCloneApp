@@ -6,17 +6,17 @@ import android.os.Bundle
 import android.widget.Button
 import top.stores.intagramcloneapp.R
 
-class SignInActivity : AppCompatActivity() {
-    private lateinit var  signUpLinkButton : Button
+class SignUpActivity : AppCompatActivity() {
+   private lateinit var signInLinkButton :Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        setContentView(R.layout.activity_sign_up)
 
-        signUpLinkButton = findViewById<Button>(R.id.sign_up_link_btn)
-
-        signUpLinkButton.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+        signInLinkButton = findViewById<Button>(R.id.sign_in_link_btn)
+        signInLinkButton.setOnClickListener {
+            startActivity(Intent(this,SignInActivity::class.java))
         }
     }
 }
