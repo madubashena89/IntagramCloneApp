@@ -61,7 +61,7 @@ class SignUpActivity : AppCompatActivity() {
               mAuth.createUserWithEmailAndPassword(email, passWord)
                   .addOnCompleteListener{task ->
                       if(task.isSuccessful){
-                           saveUserInfo(fullName, userName, email)
+                           saveUserInfo(fullName, userName, email, progrssDialog)
                       }
                       else{
                           val message = task.exception!!.toString()
@@ -81,7 +81,7 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    private fun saveUserInfo(fullName: String, userName: String, email: String) {
+    private fun saveUserInfo(fullName: String, userName: String, email: String, progrssDialog : ProgressDialog) {
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val userRef : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 
@@ -90,9 +90,27 @@ class SignUpActivity : AppCompatActivity() {
         userMap["fullName"] = currentUserId
         userMap["userName"] = currentUserId
         userMap["email"] = currentUserId
-        userMap["bio"] = "Hi welcome to Social media.."
+        userMap["bio"] = "Hi welcome to Instagram.."
+        userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagramcloneapp-d7903.appspot.com/o/Default%20Images%2Fprofile.png?alt=media&token=fc669cc6-0e81-4dcc-be66-0c56556559ce"
 
+       userRef.child(currentUserId).setValue(userMap)
+           .addOnCompleteListener { task ->
+               if (task.isSuccessful){
+                   progrssDialog.dismiss()
+                   Toast.makeText(this, "Account has been created successfully. ", Toast.LENGTH_LONG )
 
+                   val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+                   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                   startActivity(intent)
+                   finish()
+               }else{
+                   val message = task.exception!!.toString()
+                   Toast.makeText(this, "Error : $message", Toast.LENGTH_LONG)
+                   FirebaseAuth.getInstance().signOut()
+                   progrssDialog.dismiss()
+               }
+
+           }
 
     }
 }
