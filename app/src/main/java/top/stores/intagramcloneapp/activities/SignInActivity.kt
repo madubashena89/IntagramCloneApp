@@ -29,7 +29,7 @@ class SignInActivity : AppCompatActivity() {
             loginUser()
         }
     }
-
+//This method will login a user
     private fun loginUser() {
         val email = email_login.text.toString()
         val passWord = password_login.text.toString()
